@@ -4,13 +4,12 @@
 # coauthors with no listed affiliations are dropped
 # by Mikhail Matz, matz@utexas.edu
 
-home="Texas at Austin" # phrase to recognize your home institution - I assuming we don't need to list those coauthors
-coauthorFile="~/Documents/GRANTS/coauthors2012_2016.txt" # output of Casey Dunn's script, also available at https://github.com/z0on/Misc/blob/master/fetchCoauthors.py
+home="Austin" # phrase to recognize your home institution - I assuming we don't need to list those coauthors
+coauthorFile="~/Documents/GRANTS/Bay_coauthors2012_2016.txt" # output of Casey Dunn's script, also available at https://github.com/z0on/Misc/blob/master/fetchCoauthors.py
 
 co=read.table(coauthorFile,header=T,sep="\t")
 co=co[!is.na(co$Affiliation),] # remark this line if you want to list coauthors with no listed affiliation
 co=co[-(grep(home,co$Affiliation)),]
-str(co)
 names=unique(co$Name)
 Names=data.frame(matrix(unlist(strsplit(as.character(names),split=", ",fixed=T)),ncol=2,byrow=T))
 names(Names)=c("Last","First")
